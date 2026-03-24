@@ -28,7 +28,7 @@ function ChatPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
-  const [voiceSpeed, setVoiceSpeed] = useState(1.4);
+  const [voiceSpeed, setVoiceSpeed] = useState(1.7);
   const [metrics, setMetrics] = useState({
     lastResponseTime: 0,
     avgResponseTime: 0,
@@ -259,7 +259,22 @@ Be professional, accurate, and always cite the relevant source when using market
         try {
           window.speechSynthesis.cancel();
           // Strip markdown symbols before speaking
-          const ttsText = fullContent.replace(/[#*`>\[\]_~]/g, '').slice(0, 300);
+          const ttsText = fullContent
+            .replace(/#{1,6}\s+/g, '')           // headings
+            .replace(/\*\*(.+?)\*\*/g, '$1')     // bold
+            .replace(/\*(.+?)\*/g, '$1')          // italic
+            .replace(/__(.+?)__/g, '$1')          // bold underscore
+            .replace(/_(.+?)_/g, '$1')            // italic underscore
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → keep label
+            .replace(/`{1,3}[^`]*`{1,3}/g, '')   // inline code / code blocks
+            .replace(/^\s*[-*+]\s+/gm, '')        // list bullets
+            .replace(/^\s*\d+\.\s+/gm, '')        // numbered lists
+            .replace(/^\s*[|].*[|]\s*$/gm, '')    // table rows
+            .replace(/[-]{3,}/g, '')              // horizontal rules
+            .replace(/[>|\\~]/g, '')              // blockquotes, pipes, misc
+            .replace(/\s{2,}/g, ' ')              // collapse extra spaces
+            .trim()
+            .slice(0, 300);
           const utterance = new SpeechSynthesisUtterance(ttsText);
           utterance.rate = voiceSpeed;
           utterance.lang = 'en-US';
