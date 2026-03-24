@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FaPaperPlane, FaImage, FaTrash, FaHome, FaStop, FaTachometerAlt, FaPlay, FaPause, FaMicrophone, FaBolt } from 'react-icons/fa';
 import './ChatPage.css';
 
-const API_BASE = 'http://localhost:8000';
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const GROQ_BASE = 'https://api.groq.com/openai/v1';
 
 function ChatPage() {
   const navigate = useNavigate();
@@ -96,8 +96,9 @@ function ChatPage() {
         if (data === '[DONE]') break;
         try {
           const parsed = JSON.parse(data);
-          if (parsed.token) {
-            fullContent += parsed.token;
+          const token = parsed.choices?.[0]?.delta?.content || '';
+          if (token) {
+            fullContent += token;
             onToken(fullContent);
           }
         } catch (_) {}
@@ -146,27 +147,51 @@ function ChatPage() {
       };
 
       if (messageImage) {
-        // Resize image before upload, then stream
+        // Resize image, convert to base64, then stream via GROQ vision
         const resized = await resizeImage(messageImage);
-        const formData = new FormData();
-        formData.append('message', messageText || 'Describe this property');
-        formData.append('image', resized, 'image.jpg');
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result.split(',')[1]);
+          reader.readAsDataURL(resized);
+        });
 
-        const response = await fetch(`${API_BASE}/api/chat-with-image`, {
+        const response = await fetch(`${GROQ_BASE}/chat/completions`, {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Authorization': `Bearer ${GROQ_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+            messages: [{
+              role: 'user',
+              content: [
+                { type: 'text', text: `You are a professional Abu Dhabi real estate assistant. Analyze this property image and answer: ${messageText || 'Describe this property'}` },
+                { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${base64}` } }
+              ]
+            }],
+            stream: true
+          }),
           signal: abortControllerRef.current.signal
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         fullContent = await readSSEStream(response, onToken);
       } else {
-        // Text chat — SSE streaming
-        const formData = new FormData();
-        formData.append('message', messageText);
-
-        const response = await fetch(`${API_BASE}/api/chat`, {
+        // Text chat — SSE streaming via GROQ
+        const response = await fetch(`${GROQ_BASE}/chat/completions`, {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Authorization': `Bearer ${GROQ_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'openai/gpt-oss-20b',
+            messages: [
+              { role: 'system', content: 'You are a professional Abu Dhabi real estate assistant helping with property searches, prices, locations, and advice.' },
+              { role: 'user', content: messageText }
+            ],
+            stream: true
+          }),
           signal: abortControllerRef.current.signal
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -191,16 +216,26 @@ function ChatPage() {
       // Unblock UI before TTS
       setIsLoading(false);
 
-      // Text to speech (non-blocking)
+      // Text to speech (non-blocking) — call GROQ TTS directly
       if (voiceEnabled && fullContent) {
         try {
-          const ttsFormData = new FormData();
-          ttsFormData.append('text', fullContent);
-          const ttsResponse = await axios.post(`${API_BASE}/api/text-to-speech`, ttsFormData);
-          if (ttsResponse.data.audio_url) {
-            playAudio(`${API_BASE}${ttsResponse.data.audio_url}`);
-          } else {
-            console.error('TTS error:', ttsResponse.data.error);
+          const ttsText = fullContent.slice(0, 200);
+          const ttsResponse = await fetch(`${GROQ_BASE}/audio/speech`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${GROQ_API_KEY}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model: 'canopylabs/orpheus-v1-english',
+              voice: 'diana',
+              input: ttsText,
+              response_format: 'wav'
+            })
+          });
+          if (ttsResponse.ok) {
+            const audioBlob = await ttsResponse.blob();
+            playAudio(URL.createObjectURL(audioBlob));
           }
         } catch (ttsError) {
           console.error('TTS Error:', ttsError);

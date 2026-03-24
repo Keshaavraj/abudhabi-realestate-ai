@@ -35,6 +35,8 @@ jobs:
 
       - name: Build
         working-directory: frontend
+        env:
+          VITE_GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: npm run build
 
       - name: Upload artifact
