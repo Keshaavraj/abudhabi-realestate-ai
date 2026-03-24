@@ -5,8 +5,21 @@ import remarkGfm from 'remark-gfm';
 import { FaPaperPlane, FaImage, FaTrash, FaHome, FaStop, FaTachometerAlt, FaPlay, FaPause, FaMicrophone, FaBolt } from 'react-icons/fa';
 import './ChatPage.css';
 
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-const GROQ_BASE = 'https://api.groq.com/openai/v1';
+const GROQ_API_KEY  = import.meta.env.VITE_GROQ_API_KEY;
+const GROQ_BASE     = 'https://api.groq.com/openai/v1';
+const BACKEND_URL   = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
+/** Fetch live ADREC market context from the backend (silent fallback if unavailable). */
+async function fetchAdrecContext() {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/adrec-context`, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.available ? data.context : null;
+  } catch {
+    return null; // backend not running (e.g. GitHub Pages) — graceful fallback
+  }
+}
 
 function ChatPage() {
   const navigate = useNavigate();
@@ -29,7 +42,7 @@ function ChatPage() {
 
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
-  const audioElemRef = useRef(null);
+  const utteranceRef = useRef(null);
   const abortControllerRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -39,18 +52,19 @@ function ChatPage() {
   useEffect(scrollToBottom, [messages]);
 
   const stopCurrentAudio = () => {
-    const el = audioElemRef.current;
-    if (el) { el.pause(); el.currentTime = 0; }
+    window.speechSynthesis.cancel();
+    utteranceRef.current = null;
     setAudioSrc(null);
     setIsPlaying(false);
   };
 
   const toggleAudio = () => {
-    if (!audioElemRef.current) return;
-    if (audioElemRef.current.paused) {
-      audioElemRef.current.play();
-    } else {
-      audioElemRef.current.pause();
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      setIsPlaying(true);
+    } else if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -166,7 +180,7 @@ function ChatPage() {
             messages: [{
               role: 'user',
               content: [
-                { type: 'text', text: `You are a professional Abu Dhabi real estate assistant. Analyze this property image and answer: ${messageText || 'Describe this property'}` },
+                { type: 'text', text: `You are a specialized Abu Dhabi real estate assistant. Only analyze images related to real estate (properties, buildings, interiors, land, or neighborhoods in Abu Dhabi). If the image is not real estate related, politely decline and ask for a property image instead.\n\nFor real estate images, provide professional analysis covering: property type, estimated location in Abu Dhabi if recognizable, condition, notable features, and market relevance.\n\nCite sources inline:\n- Transaction data & price indices → ADREC (https://adrec.gov.ae/en/property_and_index/adrec-dashboard)\n- Listing prices & rental rates → PropertyFinder (https://www.propertyfinder.ae)\n- Cost of living & quality-of-life context → Numbeo (https://www.numbeo.com/property-investment/country_result.jsp?country=United+Arab+Emirates)\n\nFormat: (Source: [Name] — [URL])\n\nUser query: ${messageText || 'Describe this property'}` },
                 { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${base64}` } }
               ]
             }],
@@ -177,6 +191,9 @@ function ChatPage() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         fullContent = await readSSEStream(response, onToken);
       } else {
+        // Fetch live ADREC data to ground the response (non-blocking — fallback if unavailable)
+        const adrecContext = await fetchAdrecContext();
+
         // Text chat — SSE streaming via GROQ
         const response = await fetch(`${GROQ_BASE}/chat/completions`, {
           method: 'POST',
@@ -187,7 +204,28 @@ function ChatPage() {
           body: JSON.stringify({
             model: 'openai/gpt-oss-20b',
             messages: [
-              { role: 'system', content: 'You are a professional Abu Dhabi real estate assistant helping with property searches, prices, locations, and advice.' },
+              {
+                role: 'system',
+                content: `You are a specialized Abu Dhabi real estate assistant. You ONLY respond to questions about Abu Dhabi real estate — property buying, selling, renting, investing, pricing, neighborhoods, communities, legal processes, fees, and market trends.
+
+If the user asks anything unrelated to Abu Dhabi real estate, respond exactly: "I'm specialized in Abu Dhabi real estate only. Please ask me about properties, prices, neighborhoods, or the Abu Dhabi market."
+
+Always cite your data sources inline using the following references:
+
+1. ADREC (Abu Dhabi Real Estate Centre) — https://adrec.gov.ae/en/property_and_index/adrec-dashboard
+   Use for: official transaction volumes, registered sales, price per sqm indices, mortgage data, and government-verified market statistics.
+
+2. PropertyFinder — https://www.propertyfinder.ae
+   Use for: current listing prices, rental rates, available units, and neighborhood-level supply/demand.
+
+3. Numbeo — https://www.numbeo.com/property-investment/country_result.jsp?country=United+Arab+Emirates
+   Use for: cost of living context, rent-to-income ratios, and quality-of-life metrics that affect property decisions.
+
+Format citations as: (Source: [Name] — [URL])
+Example: "Average rent in Al Reem Island for a 1BR is AED 70,000–90,000/year (Source: PropertyFinder — https://www.propertyfinder.ae)"
+
+Be professional, accurate, and always cite the relevant source when using market figures.${adrecContext ? `\n\n${adrecContext}` : ''}`
+              },
               { role: 'user', content: messageText }
             ],
             stream: true
@@ -216,27 +254,20 @@ function ChatPage() {
       // Unblock UI before TTS
       setIsLoading(false);
 
-      // Text to speech (non-blocking) — call GROQ TTS directly
-      if (voiceEnabled && fullContent) {
+      // Text-to-speech via browser Web Speech API — no API key, no CORS issues
+      if (voiceEnabled && fullContent && 'speechSynthesis' in window) {
         try {
-          const ttsText = fullContent.slice(0, 200);
-          const ttsResponse = await fetch(`${GROQ_BASE}/audio/speech`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${GROQ_API_KEY}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              model: 'canopylabs/orpheus-v1-english',
-              voice: 'diana',
-              input: ttsText,
-              response_format: 'wav'
-            })
-          });
-          if (ttsResponse.ok) {
-            const audioBlob = await ttsResponse.blob();
-            playAudio(URL.createObjectURL(audioBlob));
-          }
+          window.speechSynthesis.cancel();
+          // Strip markdown symbols before speaking
+          const ttsText = fullContent.replace(/[#*`>\[\]_~]/g, '').slice(0, 300);
+          const utterance = new SpeechSynthesisUtterance(ttsText);
+          utterance.rate = voiceSpeed;
+          utterance.lang = 'en-US';
+          utterance.onstart = () => { setIsPlaying(true); setAudioSrc('active'); };
+          utterance.onend = () => { setIsPlaying(false); setAudioSrc(null); };
+          utterance.onerror = () => { setIsPlaying(false); setAudioSrc(null); };
+          utteranceRef.current = utterance;
+          window.speechSynthesis.speak(utterance);
         } catch (ttsError) {
           console.error('TTS Error:', ttsError);
         }
@@ -278,15 +309,6 @@ function ChatPage() {
     });
   };
 
-  const playAudio = (url) => {
-    const el = audioElemRef.current;
-    if (!el) return;
-    el.src = url;
-    el.playbackRate = voiceSpeed;
-    el.load();
-    el.play().catch(err => console.error('Audio play error:', err));
-    setAudioSrc(url);
-  };
 
   return (
     <div className="chat-page">
@@ -327,7 +349,7 @@ function ChatPage() {
           {[
             { name: 'GPT-OSS 20B',       type: 'Text Chat'       },
             { name: 'Llama 4 Scout 17B', type: 'Vision'          },
-            { name: 'Orpheus v1',        type: 'Text-to-Speech'  },
+            { name: 'Browser TTS',       type: 'Text-to-Speech'  },
           ].map((m) => (
             <div key={m.name} className="model-card">
               <span className="model-card-dot" />
@@ -376,7 +398,6 @@ function ChatPage() {
                 onChange={(e) => {
                   const s = parseFloat(e.target.value);
                   setVoiceSpeed(s);
-                  if (audioElemRef.current) audioElemRef.current.playbackRate = s;
                 }}
               />
             </div>
@@ -489,13 +510,6 @@ function ChatPage() {
           </button>
         </div>
       </div>
-      <audio
-        ref={audioElemRef}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => { setIsPlaying(false); setAudioSrc(null); }}
-        style={{ display: 'none' }}
-      />
     </div>
   );
 }

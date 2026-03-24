@@ -1,201 +1,202 @@
-# React Version - Professional Real Estate AI Platform
+# Abu Dhabi Real Estate AI
 
-Production-ready full-stack application with FastAPI backend and React frontend.
+A full-stack AI assistant for Abu Dhabi property search — multi-model Groq stack with real-time SSE streaming, vision analysis, and voice I/O.
 
-## 🏗️ Architecture
-
-```
-react-version/
-├── backend/          # FastAPI REST API
-│   ├── server.py    # Main API server
-│   └── requirements.txt
-└── frontend/        # React + Vite SPA
-    ├── src/
-    │   ├── pages/  # Landing & Chat
-    │   └── components/
-    └── package.json
-```
-
-## 🚀 Setup
-
-### ⚡ Quick Start (One Command)
-
-```bash
-./start.sh
-```
-
-This automatically starts both backend and frontend! Access at `http://localhost:5173`
-
-Press `Ctrl+C` to stop all servers.
+**Live demo:** [keshaavraj.github.io/abudhabi-realestate-ai](https://keshaavraj.github.io/abudhabi-realestate-ai/)
 
 ---
 
-### 📝 Manual Setup (Two Terminals)
+## Screenshots
 
-#### Backend (Terminal 1)
+**Landing + floating property cards**
+![Landing hero](Assets/Screenshot%202026-03-24%20224440.png)
+
+**Feature grid + Abu Dhabi gallery marquee**
+![Features section](Assets/Screenshot%202026-03-24%20224628.png)
+
+**Chat interface — sidebar metrics, active models, voice controls**
+![Chat interface](Assets/Screenshot%202026-03-24%20224730.png)
+
+**AI response — structured markdown table, investment analysis**
+![Investment analysis](Assets/Screenshot%202026-03-24%20224947.png)
+
+**Vision — property image upload → Llama 4 Scout analysis**
+![Vision analysis](Assets/Screenshot%202026-03-24%20225337.png)
+
+---
+
+## Architecture
+
+```
+Browser
+  ├── SSE stream ──────────────────► Groq API (text / vision)
+  │                                   ├── openai/gpt-oss-20b         (chat)
+  │                                   └── llama-4-scout-17b-16e      (vision)
+  │
+  └── REST ────────────────────────► FastAPI (localhost:8000)
+                                      ├── POST /api/text-to-speech   (Orpheus TTS → gTTS fallback)
+                                      ├── POST /api/transcribe       (Google STT)
+                                      └── GET  /api/audio/{file}     (WAV/MP3 serving)
+
+GitHub Actions ──► Vite build ──► GitHub Pages  (frontend only)
+Docker Compose ──► Frontend (Nginx) + Backend (Uvicorn)  (self-hosted)
+```
+
+The frontend calls Groq directly for chat and vision — no backend proxy on the hot path. The FastAPI backend handles only TTS/STT, which keeps inference latency minimal.
+
+---
+
+## AI Models
+
+| Task | Model | Provider |
+|------|-------|----------|
+| Text chat | `openai/gpt-oss-20b` | Groq |
+| Vision / image analysis | `meta-llama/llama-4-scout-17b-16e-instruct` | Groq |
+| Text-to-speech | `canopylabs/orpheus-v1-english` (voice: diana) | Groq |
+| TTS fallback | gTTS | Google |
+| Speech-to-text | SpeechRecognition | Google Speech API |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 19, Vite 7, React Router 7 |
+| Markdown rendering | react-markdown + remark-gfm |
+| HTTP / streaming | Fetch API with `ReadableStream` (SSE) |
+| Backend | FastAPI, Uvicorn, Python 3.11 |
+| Image processing | Pillow (server), Canvas API (client resize) |
+| Container | Docker + Docker Compose |
+| Web server | Nginx (gzip, immutable caching, SPA routing) |
+| CI/CD | GitHub Actions → GitHub Pages |
+
+---
+
+## Engineering Highlights
+
+**SSE streaming** — Chat responses stream token-by-token via `text/event-stream`. The frontend parses `data:` lines incrementally and appends to the message state without waiting for the full response.
+
+**Client-side image optimisation** — Before sending to the vision API, images are resized to max 512px and JPEG-compressed to 85% quality using the Canvas API. This reduces payload size and cuts vision API latency noticeably.
+
+**TTS fallback chain** — Groq Orpheus TTS is attempted first (WAV, max 200 chars). On failure the backend falls back to gTTS (MP3) transparently — no user-visible error.
+
+**Request cancellation** — Each chat submission creates an `AbortController`. Sending a new message cancels any in-flight stream before starting the next one.
+
+**Performance metrics panel** — The sidebar tracks last response time, rolling average, total estimated tokens (`word_count × 1.3`), and message count — useful for evaluating model/prompt performance at a glance.
+
+**Multi-stage Docker builds** — Frontend: Node 20 build stage → Nginx alpine serve stage. Backend: Python 3.11 slim with `requirements.txt` install. Both services are orchestrated via Compose with health checks.
+
+---
+
+## Project Structure
+
+```
+abudhabi-realestate-ai/
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── LandingPage.jsx   # Hero, gallery marquee, features grid
+│   │   │   └── ChatPage.jsx      # Chat UI, voice, image upload, metrics
+│   │   └── App.jsx               # Router (basename for GitHub Pages)
+│   ├── vite.config.js            # base: '/abudhabi-realestate-ai/'
+│   ├── Dockerfile                # Multi-stage: Node build → Nginx serve
+│   └── nginx.conf                # Gzip, caching, SPA fallback
+├── backend/
+│   ├── server.py                 # FastAPI — TTS, STT, audio serving
+│   ├── requirements.txt
+│   └── Dockerfile
+├── .github/workflows/deploy.yml  # Build → GitHub Pages on push to main
+├── docker-compose.yml
+└── start.sh                      # One-command local dev startup
+```
+
+---
+
+## Quick Start
+
+### Docker (recommended)
 
 ```bash
-cd react-version/backend
+git clone https://github.com/Keshaavraj/abudhabi-realestate-ai.git
+cd abudhabi-realestate-ai
+```
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+Set your Groq API key, then:
 
-# Install dependencies
+```bash
+docker-compose up --build
+```
+
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:8000`
+- API docs: `http://localhost:8000/docs`
+
+### Manual
+
+**Backend**
+```bash
+cd backend
+python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-
-# Start server
 python server.py
 ```
 
-✅ Backend running at: **http://localhost:8000**
-
-### Frontend (Terminal 2)
-
-**Important for WSL2 users:** Use Linux npm (not Windows npm) to avoid UNC path issues.
-
+**Frontend**
 ```bash
-# First-time setup: Install nvm (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install --lts
-nvm use node
-
-# Verify using Linux npm
-which npm  # Should show: /home/username/.nvm/versions/node/...
-```
-
-```bash
-cd react-version/frontend
-
-# Load nvm in current terminal
-source ~/.nvm/nvm.sh && nvm use node
-
-# Install dependencies
+cd frontend
 npm install
-
-# Start development server
 npm run dev
 ```
 
-✅ Frontend running at: **http://localhost:5173**
+---
 
-**Pro Tip:** Add to `~/.bashrc` to auto-load nvm:
-```bash
-source ~/.nvm/nvm.sh
-nvm use node >/dev/null 2>&1
-```
+## Environment Variables
 
-## 📊 Features
+| Variable | Required by | Purpose |
+|----------|-------------|---------|
+| `GROQ_API_KEY` | Backend | TTS via Orpheus, STT fallback |
+| `VITE_GROQ_API_KEY` | Frontend build | Direct Groq chat + vision calls |
 
-### Backend API (FastAPI)
-- `/api/chat` - Text conversation
-- `/api/chat-with-image` - Image analysis
-- `/api/transcribe` - Speech-to-text
-- `/api/text-to-speech` - Voice synthesis
-- `/api/audio/{filename}` - Audio file serving
+Set `VITE_GROQ_API_KEY` in your environment before running `npm run build`. For the GitHub Pages deployment, add it as a repository secret — the Actions workflow injects it at build time.
 
-### Frontend (React)
-- 🏠 **Landing Page**: Professional hero section with feature showcase
-- 💬 **Chat Interface**: Real-time messaging with image support
-- 📊 **Analytics Dashboard**: Performance metrics, token counting
-- 🎤 **Voice Controls**: TTS with speed adjustment (0.5x - 2x)
-- 🎨 **Animated UI**: AI-themed neural network backgrounds
-- 🔄 **Concurrent Requests**: Proper state management and cancellation
+---
 
-## 🔧 Configuration
+## Backend API
 
-### Backend (server.py)
-```python
-# Customize models
-TEXT_MODEL = "llama3.1:8b"
-VISION_MODEL = "llava:7b"
+| Endpoint | Method | Input | Output |
+|----------|--------|-------|--------|
+| `/api/text-to-speech` | POST | `text` (form) | `{ audio_url }` |
+| `/api/transcribe` | POST | `audio` (file) | `{ text }` |
+| `/api/audio/{filename}` | GET | path param | WAV / MP3 stream |
+| `/` | GET | — | health check |
 
-# Adjust CORS origins
-allow_origins=["http://localhost:5173"]
+CORS is configured for `localhost:5173`, `localhost:3000`, and the GitHub Pages origin.
 
-# Change port
-uvicorn.run(app, host="0.0.0.0", port=8000)
-```
+---
 
-### Frontend (src/pages/ChatPage.jsx)
-```javascript
-// API endpoint
-const API_BASE = 'http://localhost:8000';
+## Data Sources
 
-// Voice settings
-const [voiceSpeed, setVoiceSpeed] = useState(1.0);
-```
+Market data is cited inline in AI responses from these public sources:
 
-## 📦 Production Build
+| Source | URL | Used for |
+|--------|-----|---------|
+| ADREC (Abu Dhabi Real Estate Centre) | [adrec.gov.ae](https://adrec.gov.ae/en/property_and_index/adrec-dashboard) | Official transaction volumes, registered sales, price indices |
+| PropertyFinder | [propertyfinder.ae](https://www.propertyfinder.ae) | Current listing prices, rental rates, available units |
+| Numbeo | [numbeo.com](https://www.numbeo.com/property-investment/country_result.jsp?country=United+Arab+Emirates) | Cost of living context, rent-to-income ratios |
 
-### Frontend
-```bash
-cd react-version/frontend
-npm run build
-```
+The system prompt instructs the model to cite each source inline when referencing market figures.
 
-Outputs to `dist/` - serve with nginx/Apache
+---
 
-### Backend
-```bash
-# Install production server
-pip install gunicorn
+## License
 
-# Run with gunicorn
-gunicorn -w 4 -k uvicorn.workers.UvicornWorker server:app
-```
+MIT — for educational and non-commercial use only. See [LICENSE](LICENSE).
 
-## 🎨 Customization
+---
 
-### Theme Colors
-Edit `src/pages/LandingPage.css` and `src/pages/ChatPage.css`:
-```css
-/* Change gradient colors */
-background: linear-gradient(135deg, #YOUR_COLOR1 0%, #YOUR_COLOR2 100%);
-```
+## Deployment
 
-### Add New Features
-1. Add API endpoint in `backend/server.py`
-2. Create React component in `src/components/`
-3. Update routes in `src/App.jsx`
+**GitHub Pages** (frontend only) — push to `main` triggers the workflow: installs deps, runs `vite build`, uploads `dist/` as a Pages artifact. The Vite `base` config and React Router `basename` are both set to `/abudhabi-realestate-ai/` to handle the subpath correctly.
 
-## 🐛 Troubleshooting
-
-**CORS Errors?**
-- Check backend CORS settings match frontend URL
-- Ensure both servers are running
-
-**Models Not Found?**
-```bash
-ollama pull llama3.1:8b
-ollama pull llava:7b
-```
-
-**Audio Not Working?**
-- Check browser permissions for audio playback
-- Verify TTS endpoint returns valid MP3
-
-## 🚀 Deployment
-
-### Docker (Coming Soon)
-```bash
-docker-compose up -d
-```
-
-### Manual
-1. Deploy backend to cloud (AWS, GCP, Azure)
-2. Build frontend: `npm run build`
-3. Serve `dist/` folder with CDN
-4. Update API_BASE in frontend to production URL
-
-## 📝 Notes
-
-- Backend requires Ollama running locally or remotely
-- Frontend optimized for modern browsers (Chrome 90+, Firefox 88+)
-- Supports responsive design (desktop/tablet)
-- Production ready with error handling and state management
-
-## 🔗 API Documentation
-
-Visit **http://localhost:8000/docs** for interactive Swagger API docs.
+**Self-hosted** — `docker-compose up` brings up both services. Nginx serves the built frontend on port 5173 with gzip compression, one-year immutable caching for hashed assets, and `try_files` fallback for client-side routing.

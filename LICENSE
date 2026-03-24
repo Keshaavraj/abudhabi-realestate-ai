@@ -1,0 +1,40 @@
+MIT License
+
+Copyright (c) 2026 Keshaavraj
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+IMPORTANT NOTICE — EDUCATIONAL AND NON-COMMERCIAL USE ONLY
+
+This project is intended strictly for educational and non-commercial purposes.
+
+- This software must not be used to operate a commercial real estate service,
+  facilitate paid transactions, or generate revenue in any form.
+- Property data and market information referenced by this application are
+  sourced from publicly available platforms:
+    · Abu Dhabi Real Estate Centre (ADREC) — https://adrec.gov.ae
+    · PropertyFinder — https://www.propertyfinder.ae
+    · Numbeo — https://www.numbeo.com
+  All data is used for informational and educational purposes only.
+- Users must independently verify all property information before making
+  any financial or real estate decisions.
+- The author makes no representations or warranties regarding the accuracy,
+  completeness, or timeliness of the information provided by this application.
