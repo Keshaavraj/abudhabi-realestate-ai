@@ -4,16 +4,16 @@ import { FaRobot, FaImage, FaMicrophone, FaBolt, FaChartLine, FaGlobe, FaBuildin
 import './LandingPage.css';
 
 const GALLERY = [
-  { url: 'https://picsum.photos/seed/abudhabi1/600/400',  label: 'Abu Dhabi Skyline' },
-  { url: 'https://picsum.photos/seed/mosque2/600/400',    label: 'Sheikh Zayed Mosque' },
-  { url: 'https://picsum.photos/seed/ferrari3/600/400',   label: 'Ferrari World' },
-  { url: 'https://picsum.photos/seed/corniche4/600/400',  label: 'The Corniche' },
-  { url: 'https://picsum.photos/seed/yasisle5/600/400',   label: 'Yas Island' },
-  { url: 'https://picsum.photos/seed/towers6/600/400',    label: 'Luxury Towers' },
-  { url: 'https://picsum.photos/seed/supercar7/600/400',  label: 'Supercars' },
-  { url: 'https://picsum.photos/seed/marina8/600/400',    label: 'Marina Lights' },
-  { url: 'https://picsum.photos/seed/golden9/600/400',    label: 'Golden Hour' },
-  { url: 'https://picsum.photos/seed/resort10/600/400',   label: 'Luxury Resort' },
+  { url: 'https://images.pexels.com/photos/5045851/pexels-photo-5045851.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Abu Dhabi Skyline' },
+  { url: 'https://images.pexels.com/photos/1883409/pexels-photo-1883409.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Sheikh Zayed Mosque' },
+  { url: 'https://images.pexels.com/photos/6697875/pexels-photo-6697875.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Yas Marina Circuit' },
+  { url: 'https://images.pexels.com/photos/19965889/pexels-photo-19965889.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop', label: 'The Corniche' },
+  { url: 'https://images.pexels.com/photos/21856196/pexels-photo-21856196.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop', label: 'Louvre Abu Dhabi' },
+  { url: 'https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Luxury Towers' },
+  { url: 'https://images.pexels.com/photos/5686514/pexels-photo-5686514.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Marina Skyline' },
+  { url: 'https://images.pexels.com/photos/4727408/pexels-photo-4727408.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',   label: 'Grand Mosque' },
+  { url: 'https://images.pexels.com/photos/28718185/pexels-photo-28718185.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop', label: 'Abu Dhabi Night' },
+  { url: 'https://images.pexels.com/photos/24807132/pexels-photo-24807132.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop', label: 'Luxury Resort' },
 ];
 
 const features = [
@@ -82,9 +82,9 @@ function LandingPage() {
           {/* Right side floating property cards */}
           <div className="lp-hero-cards">
             {[
-              { img: 'https://picsum.photos/seed/reem/300/200',     name: 'Al Reem Island',       price: 'AED 85k/yr',  tag: '🏙️ High-Rise' },
-              { img: 'https://picsum.photos/seed/corniche/300/200', name: 'Corniche Residences',  price: 'AED 120k/yr', tag: '🌊 Sea View' },
-              { img: 'https://picsum.photos/seed/yas/300/200',      name: 'Yas Island Villa',     price: 'AED 200k/yr', tag: '🏎️ Ferrari World' },
+              { img: 'https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',   name: 'Al Reem Island',      price: 'AED 85k/yr',  tag: '🏙️ High-Rise' },
+              { img: 'https://images.pexels.com/photos/5045851/pexels-photo-5045851.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',   name: 'Corniche Residences', price: 'AED 120k/yr', tag: '🌊 Sea View' },
+              { img: 'https://images.pexels.com/photos/29453302/pexels-photo-29453302.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',  name: 'Yas Island Villa',    price: 'AED 200k/yr', tag: '🏎️ Ferrari World' },
             ].map((c, i) => (
               <div key={i} className="lp-prop-card" style={{'--ci': i}}>
                 <img src={c.img} alt={c.name} />

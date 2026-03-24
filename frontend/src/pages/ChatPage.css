@@ -224,7 +224,7 @@
   flex-direction: column;
   background:
     linear-gradient(to bottom, rgba(5,14,29,0.96) 0%, rgba(5,14,29,0.9) 100%),
-    url('https://picsum.photos/seed/chatbg50/1600/900')
+    url('https://images.pexels.com/photos/5045851/pexels-photo-5045851.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop')
     center/cover no-repeat fixed;
   overflow: hidden;
 }
@@ -236,7 +236,7 @@
   flex-shrink: 0;
   background:
     linear-gradient(90deg, rgba(5,14,29,0.97) 0%, rgba(8,20,45,0.93) 100%),
-    url('https://picsum.photos/seed/header51/1400/160')
+    url('https://images.pexels.com/photos/19965889/pexels-photo-19965889.jpeg?auto=compress&cs=tinysrgb&w=1400&h=160&fit=crop')
     center/cover no-repeat;
   border-bottom: 1px solid var(--border);
   display: flex;
