@@ -224,7 +224,7 @@
   flex-direction: column;
   background:
     linear-gradient(to bottom, rgba(5,14,29,0.96) 0%, rgba(5,14,29,0.9) 100%),
-    url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&h=900&fit=crop&auto=format')
+    url('https://picsum.photos/seed/chatbg50/1600/900')
     center/cover no-repeat fixed;
   overflow: hidden;
 }
@@ -236,7 +236,7 @@
   flex-shrink: 0;
   background:
     linear-gradient(90deg, rgba(5,14,29,0.97) 0%, rgba(8,20,45,0.93) 100%),
-    url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&h=160&fit=crop&auto=format')
+    url('https://picsum.photos/seed/header51/1400/160')
     center/cover no-repeat;
   border-bottom: 1px solid var(--border);
   display: flex;
