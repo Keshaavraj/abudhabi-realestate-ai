@@ -25,6 +25,7 @@ function ChatPage() {
 
   const [audioSrc, setAudioSrc] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -254,12 +255,16 @@ function ChatPage() {
 
   return (
     <div className="chat-page">
-      <div className="sidebar">
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+      <div className={`sidebar ${sidebarOpen ? 'sidebar--open' : ''}`}>
         <div className="sidebar-header">
           <h2>🏠 Real Estate AI</h2>
-          <button className="home-btn" onClick={() => navigate('/')}>
-            <FaHome /> Home
-          </button>
+          <div className="sidebar-header-btns">
+            <button className="home-btn" onClick={() => navigate('/')}>
+              <FaHome /> Home
+            </button>
+            <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)}>✕</button>
+          </div>
         </div>
 
         <div className="metrics-panel">
@@ -369,9 +374,12 @@ function ChatPage() {
 
       <div className="main-chat">
         <div className="chat-header">
-          <div>
-            <h1>Abu Dhabi Real Estate Assistant</h1>
-            <p>Ask about properties, prices, locations, and more!</p>
+          <div className="chat-header-left">
+            <button className="hamburger-btn" onClick={() => setSidebarOpen(true)}>☰</button>
+            <div>
+              <h1>Abu Dhabi Real Estate Assistant</h1>
+              <p>Ask about properties, prices, locations, and more!</p>
+            </div>
           </div>
           <div className="header-status">
             <span className="status-dot"></span>
