@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+ollama
+gtts
+SpeechRecognition
+pillow
+pydub
