@@ -4,16 +4,16 @@ import { FaRobot, FaImage, FaMicrophone, FaBolt, FaChartLine, FaGlobe, FaBuildin
 import './LandingPage.css';
 
 const GALLERY = [
-  { url: 'https://source.unsplash.com/600x400/?abu-dhabi,skyline,night&sig=1',   label: 'Abu Dhabi Skyline' },
-  { url: 'https://source.unsplash.com/600x400/?sheikh-zayed-mosque&sig=2',       label: 'Sheikh Zayed Mosque' },
-  { url: 'https://source.unsplash.com/600x400/?ferrari-world,abudhabi&sig=3',    label: 'Ferrari World' },
-  { url: 'https://source.unsplash.com/600x400/?abu-dhabi,corniche,night&sig=4',  label: 'The Corniche' },
-  { url: 'https://source.unsplash.com/600x400/?yas-island,abudhabi&sig=5',       label: 'Yas Island' },
-  { url: 'https://source.unsplash.com/600x400/?abu-dhabi,luxury,highrise&sig=6', label: 'Luxury Towers' },
-  { url: 'https://source.unsplash.com/600x400/?dubai,ferrari,supercar&sig=7',    label: 'Supercars' },
-  { url: 'https://source.unsplash.com/600x400/?abu-dhabi,marina,night&sig=8',    label: 'Marina Lights' },
-  { url: 'https://source.unsplash.com/600x400/?uae,skyline,golden&sig=9',        label: 'Golden Hour' },
-  { url: 'https://source.unsplash.com/600x400/?abu-dhabi,resort,pool&sig=10',    label: 'Luxury Resort' },
+  { url: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop&auto=format', label: 'Abu Dhabi Skyline' },
+  { url: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=600&h=400&fit=crop&auto=format', label: 'Sheikh Zayed Mosque' },
+  { url: 'https://images.unsplash.com/photo-1571087881723-8b9de2b8e8a2?w=600&h=400&fit=crop&auto=format', label: 'Ferrari World' },
+  { url: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=600&h=400&fit=crop&auto=format', label: 'The Corniche' },
+  { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&auto=format', label: 'Yas Island' },
+  { url: 'https://images.unsplash.com/photo-1524661135-875f573f59e7?w=600&h=400&fit=crop&auto=format',    label: 'Luxury Towers' },
+  { url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&auto=format',    label: 'Supercars' },
+  { url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop&auto=format', label: 'Marina Lights' },
+  { url: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop&auto=format', label: 'Golden Hour' },
+  { url: 'https://images.unsplash.com/photo-1540541338537-32680ce3e6a8?w=600&h=400&fit=crop&auto=format', label: 'Luxury Resort' },
 ];
 
 const features = [
@@ -82,9 +82,9 @@ function LandingPage() {
           {/* Right side floating property cards */}
           <div className="lp-hero-cards">
             {[
-              { img: 'https://source.unsplash.com/300x200/?abu-dhabi,tower,night&sig=11', name: 'Al Reem Island', price: 'AED 85k/yr', tag: '🏙️ High-Rise' },
-              { img: 'https://source.unsplash.com/300x200/?abu-dhabi,corniche,apartment&sig=12', name: 'Corniche Residences', price: 'AED 120k/yr', tag: '🌊 Sea View' },
-              { img: 'https://source.unsplash.com/300x200/?yas-island,villa&sig=13', name: 'Yas Island Villa', price: 'AED 200k/yr', tag: '🏎️ Ferrari World' },
+              { img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=200&fit=crop&auto=format', name: 'Al Reem Island', price: 'AED 85k/yr', tag: '🏙️ High-Rise' },
+              { img: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300&h=200&fit=crop&auto=format', name: 'Corniche Residences', price: 'AED 120k/yr', tag: '🌊 Sea View' },
+              { img: 'https://images.unsplash.com/photo-1540541338537-32680ce3e6a8?w=300&h=200&fit=crop&auto=format', name: 'Yas Island Villa', price: 'AED 200k/yr', tag: '🏎️ Ferrari World' },
             ].map((c, i) => (
               <div key={i} className="lp-prop-card" style={{'--ci': i}}>
                 <img src={c.img} alt={c.name} />

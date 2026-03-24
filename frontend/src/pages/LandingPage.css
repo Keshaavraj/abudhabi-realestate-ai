@@ -242,7 +242,7 @@
 .lp-landmarks-bg {
   position: absolute; inset: 0;
   background:
-    url('https://source.unsplash.com/1600x600/?abu-dhabi,night,skyline&sig=20')
+    url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&h=600&fit=crop&auto=format')
     center/cover no-repeat;
   filter: brightness(0.25) saturate(1.4);
   z-index: 0;
