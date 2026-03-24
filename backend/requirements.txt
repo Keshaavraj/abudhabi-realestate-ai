@@ -6,3 +6,5 @@ gtts
 SpeechRecognition
 pillow
 pydub
+openai
+python-dotenv
