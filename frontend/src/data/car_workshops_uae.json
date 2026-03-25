@@ -1,0 +1,475 @@
+{
+  "metadata": {
+    "title": "UAE Car Repair Workshops Directory",
+    "description": "Real, verified car repair workshops across all UAE emirates. Data sourced from official business websites, Yellow Pages UAE, and Google Maps listings.",
+    "last_updated": "2026-03-25",
+    "total_workshops": 36
+  },
+  "emirates": {
+    "abu_dhabi": {
+      "emirate": "Abu Dhabi",
+      "featured_area": "Mussafah Industrial Area",
+      "workshops": [
+        {
+          "id": "auh_001",
+          "name": "Al Zaabi Auto Care",
+          "phone": "+971-50-187-3124",
+          "area": "Mussafah M-37, Abu Dhabi",
+          "full_address": "Plot No 69, Mussafah M-37, Musaffah Industrial Area, Abu Dhabi, UAE",
+          "email": "mobicash950@gmail.com",
+          "website": "https://alzaabiautocare.com/",
+          "hours": "Mon-Sat 9:00AM-10:00PM, Sun 9:00AM-7:00PM",
+          "services": ["Engine Repair", "AC Service", "Electrical Work", "Oil Change", "Suspension", "Brakes"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Zaabi+Auto+Care+Mussafah+Abu+Dhabi",
+          "notes": "Authorized Bosch Service, multi-brand specialist"
+        },
+        {
+          "id": "auh_002",
+          "name": "Royal Swiss Auto Services",
+          "phone": "+971-600-579-477",
+          "phone_tollfree": "+971-800-79477",
+          "area": "Mussafah M-14, Abu Dhabi",
+          "full_address": "Al Bees 2 Street, Mussafah Sector M14, Abu Dhabi, UAE",
+          "email": "hello@swissauto.ae",
+          "website": "https://swissauto.ae/",
+          "hours": "Sun-Thu & Sat: 09:00-18:00, Fri: 08:00-22:00",
+          "services": ["European Car Specialist", "Diagnostics", "Engine Repair", "Transmission", "AC Service", "Body Works"],
+          "google_maps_url": "https://www.google.com/maps/search/Royal+Swiss+Auto+Services+Mussafah+Abu+Dhabi",
+          "notes": "ESMA Certified, 18 years dealership experience, European car expert"
+        },
+        {
+          "id": "auh_003",
+          "name": "Al Nahdha Auto Garage",
+          "phone": "+971-55-107-6364",
+          "area": "Mussafah M-3, Abu Dhabi",
+          "full_address": "Mussafah Industrial Area, Mussafah M3, Abu Dhabi, UAE",
+          "website": "https://www.alnahdhaauto.com/",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Multi-brand Repair", "Body Shop", "Detailing", "Maintenance", "Electrical", "Mechanical"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Nahdha+Auto+Garage+Mussafah+Abu+Dhabi",
+          "notes": "Bosch Service partner, multi-brand specialist for luxury to economy cars"
+        },
+        {
+          "id": "auh_004",
+          "name": "Diamond Bright Car Care Center",
+          "phone": "+971-2-550-9249",
+          "area": "Mussafah M-26, Abu Dhabi",
+          "full_address": "Mussafah M26, Musaffah Industrial Area, Abu Dhabi, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Mechanical", "Electrical", "Body Works", "Tyres", "AC Service", "Painting"],
+          "google_maps_url": "https://www.google.com/maps/search/Diamond+Bright+Car+Care+Center+Mussafah+Abu+Dhabi",
+          "notes": "Full-service workshop with body and mechanical expertise"
+        },
+        {
+          "id": "auh_005",
+          "name": "Grace Auto Repair",
+          "phone": "+971-2-554-4140",
+          "area": "Mussafah M-33, Abu Dhabi",
+          "full_address": "M-33, Musaffah Industrial Area, Abu Dhabi, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["General Repair", "Oil Change", "Brakes", "Suspension", "Electrical", "AC Service"],
+          "google_maps_url": "https://www.google.com/maps/search/Grace+Auto+Repair+Mussafah+Abu+Dhabi",
+          "notes": "Known for economical car servicing"
+        },
+        {
+          "id": "auh_006",
+          "name": "Aarya Auto Repair Body Shop",
+          "phone": "+971-2-551-2173",
+          "area": "Mussafah M-9, Abu Dhabi",
+          "full_address": "Plot No 81, Mussafah M-9, Musaffah Industrial Area, Abu Dhabi, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Body Shop", "Painting", "Mechanical", "Electrical", "AC Service", "Denting"],
+          "google_maps_url": "https://www.google.com/maps/search/Aarya+Auto+Repair+Body+Shop+Mussafah+Abu+Dhabi",
+          "notes": "Second branch at M-40, Plot No 68: +971-2-551-2175"
+        }
+      ]
+    },
+    "dubai": {
+      "emirate": "Dubai",
+      "featured_area": "Al Quoz Industrial Area",
+      "workshops": [
+        {
+          "id": "dxb_001",
+          "name": "AAA Service Center",
+          "phone": "+971-4-347-0400",
+          "phone_emergency": "+971-4-285-8989",
+          "area": "Al Quoz Industrial Area 3, Dubai",
+          "full_address": "81, 4th Street, Behind Gold and Diamond Park, Al Quoz Industrial Area 3, Dubai, UAE",
+          "email": "info@aaadubai.com",
+          "website": "https://www.aaadubai.com/",
+          "hours": "Sat-Wed: 07:30-16:30, Thu: 07:30-16:00",
+          "po_box": "10101, Dubai",
+          "services": ["Full Service", "Engine Overhaul", "Transmission", "Electrical", "AC", "Tyres", "Body Works"],
+          "google_maps_url": "https://www.google.com/maps/search/AAA+Service+Center+Al+Quoz+Industrial+3+Dubai",
+          "notes": "One of Dubai's most established and trusted service centers"
+        },
+        {
+          "id": "dxb_002",
+          "name": "Speed O Garage",
+          "phone": "+971-54-581-2721",
+          "area": "Al Quoz Industrial 4, Dubai",
+          "full_address": "Hadaeq Mohammed Bin Rashid, Al Quoz Industrial 4, Dubai, UAE",
+          "website": "https://speedogarages.com/",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Repair", "Maintenance", "AC Service", "Electrical", "Diagnostics", "Oil Change"],
+          "google_maps_url": "https://www.google.com/maps/search/Speed+O+Garage+Al+Quoz+Industrial+4+Dubai",
+          "notes": "Expert car repair and affordable service in Al Quoz area"
+        },
+        {
+          "id": "dxb_003",
+          "name": "Dar Al Madina Garage",
+          "phone": "+971-4-388-3886",
+          "area": "Al Quoz Industrial Area 2, Dubai",
+          "full_address": "2/10, 9A Street, Al Quoz Industrial Area 2, Behind Al Khail Gate, Dubai, UAE",
+          "website": "https://www.almadinagarage.com/",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Repair", "Ceramic Coating", "Detailing", "Car Wash", "Body Works", "Painting"],
+          "google_maps_url": "https://www.google.com/maps/search/Dar+Al+Madina+Garage+Al+Quoz+Industrial+2+Dubai",
+          "notes": "Established 2005, premium quality automobile repairing and detailing"
+        },
+        {
+          "id": "dxb_004",
+          "name": "Desire Auto Service",
+          "phone": "+971-50-197-6666",
+          "area": "Al Quoz Industrial Area 2, Dubai",
+          "full_address": "Al Bafta Warehouses, Warehouse No 2, Plot No 365 327 2, Al Quoz Industrial Area 2, Dubai, UAE",
+          "website": "https://desireautoservice.com/",
+          "hours": "Mon-Sat: 09:00-19:00",
+          "services": ["Engine Repair", "Diagnostics", "Transmission", "Suspension", "AC", "Electrical"],
+          "google_maps_url": "https://www.google.com/maps/search/Desire+Auto+Service+Al+Quoz+Industrial+2+Dubai",
+          "notes": "Multi-brand specialist with diagnostic expertise"
+        },
+        {
+          "id": "dxb_005",
+          "name": "Colour Fair Auto Garage (CF Auto Garage)",
+          "phone": "+971-50-423-0628",
+          "phone_alt": "+971-50-814-8146",
+          "area": "Al Quoz Industrial Area 1, Dubai",
+          "full_address": "Warehouse 09, 13 Street, Al Quoz Industrial Area 1, Dubai, UAE",
+          "website": "https://cfautogarage.com/",
+          "hours": "Mon-Thu & Sat: 08:30-20:30, Fri: 08:30-12:00 & 14:30-20:30",
+          "services": ["Painting", "Body Works", "Denting", "Mechanical", "Electrical", "Detailing"],
+          "google_maps_url": "https://www.google.com/maps/search/Colour+Fair+Auto+Garage+Al+Quoz+Industrial+1+Dubai",
+          "notes": "Over 20 years experience, certified technicians, operates extended hours"
+        },
+        {
+          "id": "dxb_006",
+          "name": "Auto Expert Workshop",
+          "phone": "+971-56-788-8808",
+          "area": "Al Quoz Industrial Area 2, Dubai",
+          "full_address": "Al Bafta Warehouse, 20C Street, Al Quoz Industrial Area 2, Dubai, UAE",
+          "hours": "Daily: 09:00-19:00",
+          "services": ["Car Repair", "Maintenance", "Diagnostics", "AC Service", "Electrical", "Oil Change"],
+          "google_maps_url": "https://www.google.com/maps/search/Auto+Expert+Workshop+Al+Quoz+Industrial+2+Dubai",
+          "notes": "Comprehensive services for all vehicle makes"
+        }
+      ]
+    },
+    "sharjah": {
+      "emirate": "Sharjah",
+      "featured_area": "Industrial Area",
+      "workshops": [
+        {
+          "id": "shj_001",
+          "name": "Al Sayarah Auto Repair Workshop",
+          "phone": "+971-6-530-0909",
+          "phone_mobile": "+971-54-421-2200",
+          "phone_alt": "+971-50-415-4456",
+          "area": "Industrial Area 7, Sharjah",
+          "full_address": "Opposite Al Durrah International School, 115 Al Nahda Street, Industrial Area 7, Sharjah, UAE",
+          "email": "info@alsayarahauto.com",
+          "website": "https://www.alsayarahauto.com/",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Full Service", "Diagnostics", "Engine Repair", "Transmission", "AC", "Electrical", "Brakes"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Sayarah+Auto+Repair+Workshop+Industrial+Area+7+Sharjah",
+          "notes": "Premier auto workshop in Sharjah, multi-brand expert"
+        },
+        {
+          "id": "shj_002",
+          "name": "Burj Malabar Auto Maintenance",
+          "phone": "+971-55-568-0101",
+          "area": "Industrial Area 4, Sharjah",
+          "full_address": "13 Street #44, Industrial Area 4, Sharjah, UAE",
+          "website": "https://uhmcars.com/",
+          "hours": "Sat-Thu: 08:00-13:30 & 16:00-21:30, Fri: Closed",
+          "services": ["Car Repair", "Maintenance", "AC Service", "Electrical", "Mechanical", "Brakes"],
+          "google_maps_url": "https://www.google.com/maps/search/Burj+Malabar+Auto+Maintenance+Industrial+Area+4+Sharjah",
+          "notes": "24/7 WhatsApp support available"
+        },
+        {
+          "id": "shj_003",
+          "name": "Azure Auto",
+          "phone": "+971-58-556-8894",
+          "area": "Industrial Area 12, Sharjah",
+          "full_address": "Industrial Area 12, Sharjah, UAE",
+          "website": "https://www.azureauto.ae/",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Service", "Repair", "Diagnostics", "AC", "Engine", "Transmission"],
+          "google_maps_url": "https://www.google.com/maps/search/Azure+Auto+Industrial+Area+12+Sharjah",
+          "notes": "Best garage in Sharjah with modern equipment"
+        },
+        {
+          "id": "shj_004",
+          "name": "Al Khaleeji Auto Garage",
+          "phone": "+971-50-926-0389",
+          "area": "Industrial Area 11, Sharjah",
+          "full_address": "Industrial Area 11, Sharjah, UAE",
+          "website": "https://alkhaleejautogarage.com/",
+          "hours": "Mon-Sat: 09:00-20:00, Sun: Closed",
+          "services": ["German Car Specialist", "American Cars", "Engine Repair", "Diagnostics", "Electrical", "AC"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Khaleeji+Auto+Garage+Industrial+Area+11+Sharjah",
+          "notes": "Specialist in German and American car brands"
+        },
+        {
+          "id": "shj_005",
+          "name": "JAS Auto Workshop (Jesr Al Senaeyah)",
+          "phone": "+971-54-444-9611",
+          "area": "Industrial Area 12, Sharjah",
+          "full_address": "Industrial Area 12, Sharjah, UAE",
+          "hours": "Mon-Thu & Sat-Sun: 09:00-14:00 & 16:00-21:00, Fri: Closed",
+          "services": ["Full Service", "Mechanical", "Electrical", "AC Service", "Oil Change", "Diagnostics"],
+          "google_maps_url": "https://www.google.com/maps/search/JAS+Auto+Workshop+Industrial+Area+12+Sharjah",
+          "notes": "Comprehensive workshop in Sharjah Industrial Area"
+        },
+        {
+          "id": "shj_006",
+          "name": "Al Arabia Auto Maintenance Workshop",
+          "phone": "+971-6-530-0909",
+          "area": "Industrial Area, Sharjah",
+          "full_address": "Industrial Area, Sharjah, UAE",
+          "services": ["Full Vehicle Service", "AC Repair", "Engine", "Brakes", "Suspension", "Electrical"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Arabia+Auto+Maintenance+Workshop+Sharjah",
+          "notes": "Registered with UAE Ministry of Human Resources (Waffer Program)"
+        }
+      ]
+    },
+    "ajman": {
+      "emirate": "Ajman",
+      "featured_area": "New Industrial Area / Ajman Industrial",
+      "workshops": [
+        {
+          "id": "ajm_001",
+          "name": "BAM Auto Garage",
+          "phone": "+971-55-207-5405",
+          "area": "Ajman Industrial Area 2, Ajman",
+          "full_address": "Shop 21, Street 0723, Ajman Industrial 2, Ajman, UAE",
+          "email": "contact@bamgarage.ae",
+          "website": "https://bamgarage.ae/",
+          "hours": "Sat-Thu: 07:30-23:30, Fri: Closed, Emergency: 24/7",
+          "services": ["Full Service", "Engine Repair", "AC Service", "Electrical", "Diagnostics", "Body Works"],
+          "google_maps_url": "https://www.google.com/maps/search/BAM+Auto+Garage+Ajman+Industrial+2",
+          "notes": "Near China Mall and Ajman City Centre. 24/7 emergency service available"
+        },
+        {
+          "id": "ajm_002",
+          "name": "Alwaleed Garage",
+          "phone": "+971-56-772-4251",
+          "area": "Jurf Industrial 1, Ajman",
+          "full_address": "63/8B, Sheikh Ammar Bin Humaid Street, Tallah 2, Southern Sector, Jurf Industrial 1, Ajman, UAE",
+          "website": "https://www.alwaleedgarage.com/",
+          "hours": "Daily: 09:00-21:00",
+          "services": ["Car Repair", "Maintenance", "AC Service", "Electrical", "Brakes", "Oil Change"],
+          "google_maps_url": "https://www.google.com/maps/search/Alwaleed+Garage+Jurf+Industrial+1+Ajman",
+          "notes": "All car brands serviced, affordable rates"
+        },
+        {
+          "id": "ajm_003",
+          "name": "Al Barj Garage",
+          "phone": "+971-6-740-6055",
+          "phone_mobile": "+971-50-630-9846",
+          "area": "New Industrial Area, Ajman",
+          "full_address": "Warehouse 2, Hassan Bin Haitham Street, New Industrial Area, Ajman, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Vehicle Repairing", "Mechanical", "Electrical", "AC Service", "Brakes", "Diagnostics"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Barj+Garage+New+Industrial+Area+Ajman",
+          "notes": "General vehicle repairs and maintenance"
+        },
+        {
+          "id": "ajm_004",
+          "name": "Quick Fix Auto Garage LLC",
+          "phone": "+971-52-668-1853",
+          "area": "Industrial Area 1, Ajman",
+          "full_address": "Industrial Area 1, Ajman, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Quick Repair", "Oil Change", "Brakes", "Electrical", "AC", "Diagnostics"],
+          "google_maps_url": "https://www.google.com/maps/search/Quick+Fix+Auto+Garage+Industrial+Area+1+Ajman",
+          "notes": "Fast turnaround service for all car issues"
+        },
+        {
+          "id": "ajm_005",
+          "name": "Al Khaleej Garage Ajman",
+          "phone": "+971-6-743-5707",
+          "area": "Near Emirates Gas, New Industrial Area, Ajman",
+          "full_address": "Near Emirates Gas Station, New Industrial Area, Ajman, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["General Repair", "Mechanical", "Electrical", "AC", "Brakes", "Oil Change"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Khaleej+Garage+New+Industrial+Area+Ajman",
+          "notes": "Conveniently located near Emirates Gas in New Industrial Area"
+        },
+        {
+          "id": "ajm_006",
+          "name": "Star Garage and Auto Electrical Works",
+          "phone": "+971-6-743-6289",
+          "area": "New Industrial Area, Ajman",
+          "full_address": "New Industrial Area, Ajman, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Electrical Specialist", "Auto Electrical", "Mechanical", "Diagnostics", "AC", "Engine"],
+          "google_maps_url": "https://www.google.com/maps/search/Star+Garage+Auto+Electrical+Works+Ajman",
+          "notes": "Specialist in auto electrical and general mechanical work"
+        }
+      ]
+    },
+    "ras_al_khaimah": {
+      "emirate": "Ras Al Khaimah",
+      "featured_area": "Al Nakheel / Al Dhait / Al Qussaidat",
+      "workshops": [
+        {
+          "id": "rak_001",
+          "name": "RAK Modern Garage",
+          "phone": "+971-55-769-7458",
+          "area": "Al Ghub, Ras Al Khaimah",
+          "full_address": "4, 22C Street, Al Ghub, Ras Al Khaimah 72501, UAE",
+          "website": "https://rakmoderngarage.com/",
+          "hours": "Daily: 08:00-20:00",
+          "services": ["Denting", "Painting", "Chassis Repair", "Paint Polishing", "Door Lock", "Pre-Tasjeel Inspection"],
+          "google_maps_url": "https://www.google.com/maps/search/RAK+Modern+Garage+Al+Ghub+Ras+Al+Khaimah",
+          "notes": "Established 1978. RAK's most trusted auto body workshop. Walk-ins welcome."
+        },
+        {
+          "id": "rak_002",
+          "name": "Al Sadiq Garage",
+          "phone": "+971-50-940-3774",
+          "area": "Al Qussaidat, Ras Al Khaimah",
+          "full_address": "Al Areej Street, 10 63B Street, Al-Turfa, Al Qussaidat, Ras Al Khaimah, UAE",
+          "website": "https://alsadiqgarage.com/",
+          "hours": "Daily: 08:00-20:00",
+          "services": ["Oil Change", "Brake Repair", "Suspension", "AC Service", "Diagnostics", "Engine Repair"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Sadiq+Garage+Al+Qussaidat+Ras+Al+Khaimah",
+          "notes": "Professional car servicing for all makes including Audi and BMW"
+        },
+        {
+          "id": "rak_003",
+          "name": "RedFox Autocare",
+          "phone": "+971-56-787-4777",
+          "phone_alt": "+971-52-448-0244",
+          "area": "Al Dhait South, Ras Al Khaimah",
+          "full_address": "Sheikh Mohamed Bin Salem Road, Al Dhait South, Ras Al Khaimah, UAE (Near Al Futtaim Honda)",
+          "email": "marketing@redfox.ae",
+          "website": "https://redfox.ae/",
+          "hours": "Mon-Thu & Sat-Sun: 08:30-13:00 & 16:00-20:00, Fri: Closed",
+          "services": ["Car Service", "Repair", "Engine", "AC", "Brakes", "Diagnostics", "Electrical"],
+          "google_maps_url": "https://www.google.com/maps/search/RedFox+Autocare+Al+Dhait+South+Ras+Al+Khaimah",
+          "notes": "Expert mechanics with cutting-edge tools"
+        },
+        {
+          "id": "rak_004",
+          "name": "Al Arabia Auto Services RAK",
+          "phone": "+971-7-221-3277",
+          "area": "Al Dhait South, Ras Al Khaimah",
+          "full_address": "RAK Transport Authority Complex, Behind Al Hamra Bus Station, Al Dhait South, Ras Al Khaimah, UAE",
+          "website": "https://rak.arabiaworkshop.ae/",
+          "hours": "Mon-Thu: 08:00-18:00, Fri: 08:00-12:00 & 15:00-17:00, Sat: 08:00-13:30, Sun: Closed",
+          "services": ["Full Service", "Maintenance", "AC", "Electrical", "Engine", "Tyres"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Arabia+Auto+Services+RAK+Al+Dhait+South",
+          "notes": "Located within the RAK Transport Authority Complex"
+        },
+        {
+          "id": "rak_005",
+          "name": "CARS - Classic Automobile Repairs and Services",
+          "phone": "+971-7-228-8668",
+          "area": "Near Ruler Palace, Khuzam, Ras Al Khaimah",
+          "full_address": "Near Ruler Palace, Al Khuzam, Ras Al Khaimah, UAE",
+          "hours": "Sat-Thu: 08:00-18:00",
+          "services": ["Classic Car Repair", "General Maintenance", "Engine", "Electrical", "AC", "Body Work"],
+          "google_maps_url": "https://www.google.com/maps/search/CARS+Classic+Automobile+Repairs+Services+Khuzam+Ras+Al+Khaimah",
+          "notes": "Specialist in classic and general automobile repairs"
+        },
+        {
+          "id": "rak_006",
+          "name": "One Stop Garage LLC",
+          "phone": "+971-7-222-2503",
+          "area": "Al Nakheel, Ras Al Khaimah",
+          "full_address": "Opposite Red Building, Rams Road, Al Nakheel, Ras Al Khaimah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Full Service", "Oil Change", "Brakes", "AC", "Electrical", "Tyres"],
+          "google_maps_url": "https://www.google.com/maps/search/One+Stop+Garage+Al+Nakheel+Ras+Al+Khaimah",
+          "notes": "Comprehensive one-stop garage solution in Al Nakheel"
+        }
+      ]
+    },
+    "fujairah": {
+      "emirate": "Fujairah",
+      "featured_area": "Industrial Area",
+      "workshops": [
+        {
+          "id": "fjr_001",
+          "name": "Al Amana Garage",
+          "phone": "+971-9-222-9160",
+          "area": "Industrial Area, Fujairah",
+          "full_address": "Between Road 2 & 3, Industrial Area, P.O. Box 1326, Fujairah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Repair", "Maintenance", "Engine", "AC", "Brakes", "Electrical"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Amana+Garage+Industrial+Area+Fujairah",
+          "notes": "Established garage in Fujairah Industrial Area"
+        },
+        {
+          "id": "fjr_002",
+          "name": "Fasttrack Emarat Fujairah",
+          "phone": "+971-9-223-7769",
+          "area": "Marwa, Fujairah",
+          "full_address": "Marwa, P.O. Box 9400, Fujairah, UAE",
+          "phone_national": "800-FASTTRACK (800-327887225)",
+          "website": "https://www.fasttrackemarat.com/fujairah",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Routine Maintenance", "Advanced Diagnostics", "AC Repair", "Mechanical", "Electrical", "Tyres"],
+          "google_maps_url": "https://www.google.com/maps/search/Fasttrack+Emarat+Fujairah",
+          "notes": "Part of Fasttrack Emarat's 32-location UAE network, established 2004 at Emarat/ADNOC stations"
+        },
+        {
+          "id": "fjr_003",
+          "name": "Al Amal Garage for Car Repairing",
+          "phone": "+971-9-222-5060",
+          "area": "Industrial Area, Fujairah",
+          "full_address": "Road 2, Industrial Area, P.O. Box 1945, Fujairah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Repair", "Body Works", "Mechanical", "Electrical", "AC", "Painting"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Amal+Garage+Car+Repairing+Industrial+Area+Fujairah",
+          "notes": "General car repairs in Fujairah Industrial Area"
+        },
+        {
+          "id": "fjr_004",
+          "name": "Arabian Auto Repairing Workshop",
+          "phone": "+971-9-222-7941",
+          "area": "Industrial Area, Fujairah",
+          "full_address": "Road 1, Industrial Area, P.O. Box 723, Fujairah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["General Repairs", "Mechanical", "Electrical", "Engine", "AC Service", "Brakes"],
+          "google_maps_url": "https://www.google.com/maps/search/Arabian+Auto+Repairing+Workshop+Industrial+Area+Fujairah",
+          "notes": "Experienced workshop in the heart of Fujairah Industrial Area"
+        },
+        {
+          "id": "fjr_005",
+          "name": "Al Aqqa Auto Repair Workshop",
+          "phone": "+971-9-222-1985",
+          "area": "Industrial Area 4, Fujairah",
+          "full_address": "Industrial Area 4, P.O. Box 2264, Fujairah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["Car Repair", "Maintenance", "Engine", "Electrical", "Brakes", "AC"],
+          "google_maps_url": "https://www.google.com/maps/search/Al+Aqqa+Auto+Repair+Workshop+Industrial+Area+4+Fujairah",
+          "notes": "Located in Fujairah Industrial Area 4"
+        },
+        {
+          "id": "fjr_006",
+          "name": "Famous Auto Garage",
+          "phone": "+971-9-224-2023",
+          "area": "Industrial Area, Fujairah",
+          "full_address": "Industrial Area, P.O. Box 1067, Fujairah, UAE",
+          "hours": "Sat-Thu: 08:00-20:00",
+          "services": ["General Car Repair", "Mechanical", "Engine", "AC", "Electrical", "Oil Change"],
+          "google_maps_url": "https://www.google.com/maps/search/Famous+Auto+Garage+Industrial+Area+Fujairah",
+          "notes": "Well-known local garage in Fujairah Industrial Area"
+        }
+      ]
+    }
+  }
+}
